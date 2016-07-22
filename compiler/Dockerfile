@@ -1,14 +1,23 @@
 FROM gcc:latest
 
-ENV LLVM_VERSION 3.8.0
+ENV LLVM_VERSION_1 3
+ENV LLVM_VERSION_2 8
+ENV LLVM_VERSION_3 1
+
+# combine version
+ENV LLVM_VERSION $LLVM_VERSION_1.$LLVM_VERSION_2.$LLVM_VERSION_3
 
 # set aliases
+ENV LLVM_GPG http://llvm.org/releases/$LLVM_VERSION_1.$LLVM_VERSION_2.0
 ENV LLVM_DOWNLOAD http://llvm.org/releases/$LLVM_VERSION
 ENV LLVM_TAR clang+llvm-$LLVM_VERSION-x86_64-linux-gnu-debian8.tar.xz
 
 # download and install llvm
-RUN curl -fSL "$LLVM_DOWNLOAD/hans-gpg-key.asc" -o key.gpg \
+RUN curl -fSL "$LLVM_GPG/hans-gpg-key.asc" -o key.gpg \
 	&& gpg --import key.gpg && rm key.gpg \
+	&& curl -fSL \
+	"https://pgp.mit.edu/pks/lookup?op=get&search=0x8F0871F202119294" \
+	-o key.gpg && gpg --import key.gpg && rm key.gpg \
 	&& curl -fSL "$LLVM_DOWNLOAD/$LLVM_TAR" -o llvm.tar.xz \
 	&& curl -fSL "$LLVM_DOWNLOAD/$LLVM_TAR.sig" -o llvm.tar.xz.sig \
 	&& ls -l \
