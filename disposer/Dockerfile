@@ -9,7 +9,4 @@ RUN mkdir disposer && cd disposer \
 CMD cd /disposer/disposer \
 	&& git pull \
 	&& cd /disposer/disposer_module \
-	&& git pull \
-	&& b2 toolset=clang \
-	&& cd test \
-	&& ../bin/clang*/debug/disposer_module
+	&& git pull
