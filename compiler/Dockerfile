@@ -1,14 +1,14 @@
 FROM gcc:latest
 
 ENV LLVM_VERSION_1 3
-ENV LLVM_VERSION_2 8
-ENV LLVM_VERSION_3 1
+ENV LLVM_VERSION_2 9
+ENV LLVM_VERSION_3 0
 
 # combine version
 ENV LLVM_VERSION $LLVM_VERSION_1.$LLVM_VERSION_2.$LLVM_VERSION_3
 
 # set aliases
-ENV LLVM_GPG http://llvm.org/releases/$LLVM_VERSION_1.$LLVM_VERSION_2.0
+ENV LLVM_GPG http://llvm.org/releases/$LLVM_VERSION_1.8.0
 ENV LLVM_DOWNLOAD http://llvm.org/releases/$LLVM_VERSION
 ENV LLVM_TAR clang+llvm-$LLVM_VERSION-x86_64-linux-gnu-debian8.tar.xz
 
