@@ -4,21 +4,14 @@ ENV PATH=${PATH}:/opt/boost
 ENV BOOST=/opt/boost
 ENV BOOST_ROOT=/opt/boost
 
+COPY boost $BOOST
+
 # download and install llvm
-RUN echo "using clang : : : <cxxflags>-std=c++14" \
+RUN echo "using clang : : : <cxxflags>-std=c++1z" \
 		"<cxxflags>-stdlib=libc++ <linkflags>-stdlib=libc++" \
 		"<linkflags>-lc++abi ;" > /etc/site-config.jam \
-	&& echo "using gcc : : : <cxxflags>-std=c++14 ;" >> /etc/site-config.jam \
-	&& cd /opt \
-	&& git clone --recursive --progress \
-		"https://github.com/boostorg/boost.git" \
-		-b develop boost \
+	&& clang --version \
+	&& echo "using gcc : : : <cxxflags>-std=c++1z ;" >> /etc/site-config.jam \
 	&& cd /opt/boost \
-	&& git fetch --all \
-	&& git reset --hard origin/develop \
-	&& git pull \
-	&& git submodule foreach 'git fetch --all' \
-	&& git submodule foreach 'git reset --hard origin/develop' \
-	&& git submodule foreach 'git pull' \
 	&& ./bootstrap.sh \
 	&& ./b2 headers
