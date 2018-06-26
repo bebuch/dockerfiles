@@ -18,3 +18,4 @@ RUN cd $BOOST_ROOT && ./bootstrap.sh && bjam --build-type=complete --layout=vers
 
 # install QT
 RUN cd /opt && git clone https://code.qt.io/qt/qt5.git && cd qt5 && git checkout 5.11 && perl init-repository && ./configure -opensource -nomake examples -nomake tests -confirm-license && make && make install && cd /opt && rm -rf qt5
+RUN rm /usr/bin/qmake && ln -s /usr/local/Qt-5.11.1/bin/qmake /usr/bin/
