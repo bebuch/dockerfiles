@@ -10,7 +10,7 @@ RUN cd /opt \
 	&& mkdir build \
 	&& cd build \
 	&& cmake -DCMAKE_BUILD_TYPE=Release .. \
-	&& make -j4 install \
+	&& make -j2 install \
 	&& cd / \
 	&& rm -r /opt/eigen-git-mirror
 
@@ -23,7 +23,7 @@ RUN cd /opt \
 	&& mkdir build \
 	&& cd build \
 	&& cmake -DCMAKE_BUILD_TYPE=Release .. \
-	&& make -j4 install \
+	&& make -j2 install \
 	&& cd / \
 	&& rm -r /opt/flann
 
@@ -37,7 +37,7 @@ RUN cd /opt \
 	&& mkdir build \
 	&& cd build \
 	&& cmake -DCMAKE_BUILD_TYPE=Release .. \
-	&& make -j4 install \
+	&& make -j2 install \
 	&& cd / \
 	&& rm -r /opt/VTK-8.1.1
 
@@ -50,7 +50,7 @@ RUN cd /opt \
 	&& mkdir build \
 	&& cd build \
 	&& cmake -DCMAKE_BUILD_TYPE=Release .. \
-	&& make -j4 install \
+	&& make -j2 install \
 	&& make clean \
 	&& cd / \
 	&& rm -r /opt/pcl
