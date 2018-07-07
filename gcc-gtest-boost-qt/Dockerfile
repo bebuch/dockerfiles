@@ -112,6 +112,7 @@ RUN cd /opt \
 	&& git checkout 5.11 \
 	&& perl init-repository \
 	&& ./configure -opensource -nomake examples -nomake tests -confirm-license -qt-harfbuzz \
-	&& make -j2 install \
+	&& make -j2 \
+	&& make install \
 	&& cd /opt \
 	&& rm -rf qt5
