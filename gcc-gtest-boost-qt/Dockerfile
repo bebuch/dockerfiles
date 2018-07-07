@@ -40,8 +40,7 @@ RUN apt-get update \
 		libgles2-mesa libgles2-mesa-dev libglu1-mesa libglu1-mesa-dev \
 		libgraphite2-dev libgstreamer-plugins-base1.0-0 \
 		libgstreamer1.0-0 libgtk-3-0 libgtk-3-common \
-		libgtk-3-dev libgudev-1.0-0 libharfbuzz-dev \
-		libharfbuzz-gobject0 libharfbuzz-icu0 libib-util \
+		libgtk-3-dev libgudev-1.0-0 libib-util \
 		libinput-bin libinput-dev libinput10 libjson-glib-1.0-0 \
 		libjson-glib-1.0-common libmtdev-dev libmtdev1 libodbc1 \
 		libogg0 liborc-0.4-0 libpango1.0-dev libpangoxft-1.0-0 \
@@ -70,7 +69,7 @@ RUN apt-get update \
 		x11proto-composite-dev x11proto-damage-dev x11proto-dri2-dev \
 		x11proto-fixes-dev x11proto-gl-dev x11proto-randr-dev \
 		x11proto-record-dev x11proto-xf86vidmode-dev \
-		x11proto-xinerama-dev xkb-data \
+		x11proto-xinerama-dev xkb-data libpcre2-dev flex \
 	&& apt-get clean
 
 
@@ -112,9 +111,7 @@ RUN cd /opt \
 	&& cd qt5 \
 	&& git checkout 5.11 \
 	&& perl init-repository \
-	&& ./configure -opensource -nomake examples -nomake tests -confirm-license \
+	&& ./configure -opensource -nomake examples -nomake tests -confirm-license -qt-harfbuzz \
 	&& make -j2 install \
 	&& cd /opt \
 	&& rm -rf qt5
-RUN rm /usr/bin/qmake \
-	&& ln -s /usr/local/Qt-5.11.1/bin/qmake /usr/bin/
