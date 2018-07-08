@@ -48,7 +48,7 @@ RUN cd /opt \
 RUN cd /opt \
 	&& git clone https://github.com/PointCloudLibrary/pcl.git \
 	&& cd /opt/pcl \
-	&& git checkout tags/pcl-1.8.1 \
+# 	&& git checkout tags/pcl-1.8.1
 	&& mkdir build \
 	&& cd build \
 	&& cmake -DCMAKE_BUILD_TYPE=Release .. \
