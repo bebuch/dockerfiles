@@ -37,7 +37,7 @@ RUN cd /opt \
 	&& cd VTK-8.1.1 \
 	&& mkdir build \
 	&& cd build \
-	&& cmake -DCMAKE_BUILD_TYPE=Release .. \
+	&& cmake -DCMAKE_BUILD_TYPE=Release -DVTK_Group_Qt:BOOL=ON .. \
 	&& make -j2 \
 	&& make install \
 	&& cd / \
@@ -48,7 +48,6 @@ RUN cd /opt \
 RUN cd /opt \
 	&& git clone https://github.com/PointCloudLibrary/pcl.git \
 	&& cd /opt/pcl \
-# 	&& git checkout tags/pcl-1.8.1
 	&& mkdir build \
 	&& cd build \
 	&& cmake -DCMAKE_BUILD_TYPE=Release .. \
@@ -57,3 +56,6 @@ RUN cd /opt \
 	&& make clean \
 	&& cd / \
 	&& rm -r /opt/pcl
+
+# Set library path
+ENV LD_LIBRARY_PATH=/usr/local/lib:/usr/local/Qt-5.11.1/lib/
