@@ -116,3 +116,4 @@ RUN cd /opt \
 	&& make install \
 	&& cd /opt \
 	&& rm -rf qt5
+ENV Qt5_DIR=/usr/local/Qt-5.11.1
